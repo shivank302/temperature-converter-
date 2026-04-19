@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Temperature converter</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="page-bg">
-    <!-- fake status bar to match screenshot -->
+    
     <div class="status-bar">
       <div class="time">9:41</div>
       <div class="icons">📶 📡 🔋</div>
@@ -18,30 +18,53 @@
       <div class="card">
         <h1 class="title">Temperature converter</h1>
 
+        <!-- INPUT -->
         <div class="row two-cols">
           <div class="col">
-            <label class="label" for="degrees">Degrees</label>
-            <input id="degrees" type="number" inputmode="decimal" placeholder="Enter value" />
+            <label class="label">Degrees</label>
+            <input id="degrees" type="number" placeholder="Enter value" />
           </div>
 
+          <!-- FROM -->
           <div class="col">
-            <label class="label" for="type">Type</label>
-            <select id="type" aria-label="input type">
-              <option value="fahrenheit">Fahrenheit</option>
-              <option value="celsius">Celsius</option>
-              <option value="kelvin">Kelvin</option>
+            <label class="label">From</label>
+            <select id="from">
+              <option value="c">Celsius</option>
+              <option value="f">Fahrenheit</option>
+              <option value="k">Kelvin</option>
             </select>
           </div>
         </div>
 
+        <!-- TO -->
         <div class="row">
-          <label class="label" for="result">Result</label>
+          <label class="label">To</label>
+          <select id="to">
+            <option value="f">Fahrenheit</option>
+            <option value="c">Celsius</option>
+            <option value="k">Kelvin</option>
+          </select>
+        </div>
+
+        <!-- RESULT -->
+        <div class="row">
+          <label class="label">Result</label>
           <div id="result" class="result">—</div>
         </div>
 
-        <div class="error" id="err" aria-live="polite"></div>
+        <div class="error" id="err"></div>
 
         <button id="convertBtn" class="convert-btn">Convert</button>
+
+        <!-- DARK MODE -->
+        <button id="darkBtn" class="convert-btn" style="margin-top:10px;">🌙 Dark Mode</button>
+
+        <!-- HISTORY -->
+        <div class="row">
+          <label class="label">History</label>
+          <ul id="history"></ul>
+        </div>
+
       </div>
     </main>
   </div>

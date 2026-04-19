@@ -1,66 +1,62 @@
-// conversion logic and UI behaviour
-(function(){
-  const degreesEl = document.getElementById('degrees');
-  const typeEl = document.getElementById('type');
-  const resultEl = document.getElementById('result');
-  const btn = document.getElementById('convertBtn');
-  const err = document.getElementById('err');
+const degreesEl = document.getElementById('degrees');
+const fromEl = document.getElementById('from');
+const toEl = document.getElementById('to');
+const resultEl = document.getElementById('result');
+const btn = document.getElementById('convertBtn');
+const err = document.getElementById('err');
+const historyEl = document.getElementById('history');
+const darkBtn = document.getElementById('darkBtn');
 
-  function showError(msg){
-    err.textContent = msg;
-    resultEl.textContent = '—';
+function showError(msg){
+  err.textContent = msg;
+  resultEl.textContent = '—';
+}
+
+function clearError(){
+  err.textContent = '';
+}
+
+function convert(){
+  clearError();
+
+  const val = parseFloat(degreesEl.value);
+  if(isNaN(val)){
+    showError("Enter valid number");
+    return;
   }
 
-  function clearError(){
-    err.textContent = '';
-  }
+  let temp;
 
-  function format(n){
-    // show up to 4 decimal places, but trim trailing zeros
-    return parseFloat(n.toFixed(4)).toString();
-  }
+  // convert to celsius
+  if(fromEl.value === "c") temp = val;
+  else if(fromEl.value === "f") temp = (val - 32) * 5/9;
+  else if(fromEl.value === "k") temp = val - 273.15;
 
-  btn.addEventListener('click', function(){
-    clearError();
-    const raw = degreesEl.value.trim();
-    if(raw === ''){
-      showError('Please enter a number');
-      return;
-    }
-    const val = Number(raw);
-    if(!isFinite(val)){
-      showError('Please enter a valid number');
-      return;
-    }
+  let final;
 
-    const from = typeEl.value; // 'fahrenheit' | 'celsius' | 'kelvin'
-    let out = 0;
-    let unit = '';
+  // convert to target
+  if(toEl.value === "c") final = temp;
+  else if(toEl.value === "f") final = (temp * 9/5) + 32;
+  else if(toEl.value === "k") final = temp + 273.15;
 
-    if(from === 'fahrenheit'){
-      // Fahrenheit -> Celsius
-      out = (val - 32) * 5/9;
-      unit = '°C';
-    } else if(from === 'celsius'){
-      // Celsius -> Fahrenheit
-      out = (val * 9/5) + 32;
-      unit = '°F';
-    } else if(from === 'kelvin'){
-      // Kelvin -> Celsius (matches original screenshot behavior)
-      out = val - 273.15;
-      unit = '°C';
-    } else {
-      showError('Unknown type');
-      return;
-    }
+  final = final.toFixed(2);
 
-    resultEl.textContent = format(out) + ' ' + unit;
-  });
+  resultEl.textContent = final + "°";
 
-  // allow Enter key to convert from keyboard
-  degreesEl.addEventListener('keydown', function(e){
-    if(e.key === 'Enter'){
-      btn.click();
-    }
-  });
-})();
+  // history
+  const li = document.createElement("li");
+  li.textContent = `${val} ${fromEl.value.toUpperCase()} ➝ ${final} ${toEl.value.toUpperCase()}`;
+  historyEl.prepend(li);
+}
+
+btn.addEventListener("click", convert);
+
+// ENTER key support
+degreesEl.addEventListener("keydown", e=>{
+  if(e.key === "Enter") convert();
+});
+
+// DARK MODE
+darkBtn.addEventListener("click", ()=>{
+  document.body.classList.toggle("dark");
+}); 
