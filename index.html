@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+  <title>Temperature converter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-bg">
+    <!-- fake status bar to match screenshot -->
+    <div class="status-bar">
+      <div class="time">9:41</div>
+      <div class="icons">📶 📡 🔋</div>
+    </div>
+
+    <main class="frame">
+      <div class="card">
+        <h1 class="title">Temperature converter</h1>
+
+        <div class="row two-cols">
+          <div class="col">
+            <label class="label" for="degrees">Degrees</label>
+            <input id="degrees" type="number" inputmode="decimal" placeholder="Enter value" />
+          </div>
+
+          <div class="col">
+            <label class="label" for="type">Type</label>
+            <select id="type" aria-label="input type">
+              <option value="fahrenheit">Fahrenheit</option>
+              <option value="celsius">Celsius</option>
+              <option value="kelvin">Kelvin</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="label" for="result">Result</label>
+          <div id="result" class="result">—</div>
+        </div>
+
+        <div class="error" id="err" aria-live="polite"></div>
+
+        <button id="convertBtn" class="convert-btn">Convert</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

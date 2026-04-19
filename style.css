@@ -1,0 +1,154 @@
+/* mobile-first, matches screenshot look */
+:root{
+  --bg:#eef6f9;
+  --card:#ffffff;
+  --muted:#8a8f95;
+  --accent:#0280ff;
+  --accent-dark:#0063cc;
+  --underline:#e6e6e6;
+  --radius:28px;
+  --pad:22px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+}
+
+/* background area like screenshot */
+.page-bg{
+  width:100%;
+  max-width:980px; /* for desktop preview */
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* small fake status bar at top of card area */
+.status-bar{
+  width:100%;
+  max-width:420px;
+  margin-bottom:8px;
+  display:flex;
+  justify-content:space-between;
+  padding:6px 12px;
+  color:#6f7376;
+  font-weight:600;
+}
+
+/* center frame like phone */
+.frame{
+  width:100%;
+  max-width:420px;
+  display:flex;
+  justify-content:center;
+}
+
+/* white card */
+.card{
+  width:100%;
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:28px 26px 20px 26px;
+  box-shadow:0 10px 30px rgba(16,24,40,0.08);
+  overflow:hidden;
+}
+
+/* title */
+.title{
+  text-align:center;
+  font-size:20px;
+  font-weight:700;
+  margin:2px 0 18px;
+  color:#111827;
+}
+
+/* layout rows */
+.row{margin-bottom:18px}
+
+/* two column row */
+.two-cols{display:flex;gap:18px}
+.col{flex:1}
+
+/* label */
+.label{
+  display:block;
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+
+/* inputs & select */
+input[type="number"], select{
+  width:100%;
+  font-size:18px;
+  padding:10px 8px;
+  border:0;
+  border-bottom:2px solid var(--underline);
+  outline:none;
+  background:transparent;
+  color:#111827;
+  -webkit-appearance:none;
+  appearance:none;
+}
+
+/* placeholder styling */
+input::placeholder{color:#c9cdd1;font-weight:500}
+
+/* focus */
+input:focus, select:focus{border-bottom-color:var(--accent);}
+
+/* result box */
+.result{
+  padding:18px 8px;
+  font-size:22px;
+  font-weight:600;
+  color:#222;
+  border-bottom:2px solid var(--underline);
+  min-height:40px;
+  display:flex;
+  align-items:center;
+}
+
+/* convert button (big rounded blue) */
+.convert-btn{
+  margin-top:8px;
+  width:100%;
+  background:linear-gradient(180deg,var(--accent),var(--accent-dark));
+  color:#fff;
+  font-size:20px;
+  font-weight:700;
+  padding:14px;
+  border-radius:14px;
+  border:0;
+  box-shadow:0 6px 12px rgba(2,128,255,0.18);
+  cursor:pointer;
+}
+
+/* small error text */
+.error{
+  height:18px;
+  color:#b00020;
+  font-size:13px;
+  margin-top:-6px;
+  margin-bottom:6px;
+}
+
+/* responsive tweaks */
+@media(min-width:720px){
+  body{padding:28px}
+  .card{padding:36px 36px 28px}
+  .title{font-size:22px}
+}
+@media(min-width:980px){
+  .page-bg{padding:18px}
+}
